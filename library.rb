@@ -16,6 +16,7 @@ class Library
   end
 
   def add_book(book)
+    @books << book
   end
 
   def check_out(user, book)
@@ -43,6 +44,12 @@ class Borrower
 end
 
 class Book
+  attr_reader :title, :author
+  attr_accessor :status
   def initialize(title, author)
+      @title = title
+      @author = author
+      @status = "available"
+      @borrower = nil
   end
 end
