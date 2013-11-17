@@ -12,7 +12,7 @@ class Library
   def borrowed_books
     @books.each do |book|
       if book.status == "unavailable"
-         puts "#{book.title} by #{book.author} is checked out by #{book.borrower}"
+         puts "#{book.title} by #{book.author} is checked out by #{book.borrower.name}"
       end
     end
   end
@@ -30,15 +30,17 @@ class Library
     puts "#{book.title} was added"
   end
 
-
   def check_out(user, book)
-    if book.status == "available" && user.borrowed_books_count < 2 
+    if user.borrowed_books_count == 2 
+      puts "You already have checked out the maximum number of books"
+    elsif book.status == "unavailable"
+      puts "Sorry, this book is currently checked out"
+    else
        user.borrowed_books_count +=1
        user.borrowed << book
        book.status = "unavailable"
+       book.borrower = user
        puts "The following book #{book.title} has been checked out by #{user.name}"
-    else
-        puts "Sorry, this book is either unavailable or you have alread checkout out two books"
     end
   end
 
