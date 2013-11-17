@@ -24,12 +24,35 @@ class Library
       end
     end
   end
-
+# Add a book to the book array
+#
+# book - The String to be added.
+#
+# Examples
+# add_book("The Stranger", "Albert Camus")
+#   # => ["The Stranger", "Albert Camus"]
+#
+# Returns the Array with the new book appended to the end
   def add_book(book)
     @books << book
     puts "#{book.title} was added"
   end
 
+# Check out a book from the library
+#
+# Checks to see if the borrower has reached the book limit of 2
+#
+# Checks if the book is available to be checked out
+#
+# Checks out the book to the borrower
+#
+# Increment borrowed_books_count
+#
+# Adds the book to the borrowed_book array
+#
+# Updates book.status to unavailable
+#
+# Sets book.borrower to user
   def check_out(user, book)
     if user.borrowed_books_count == 2 
       puts "You already have checked out the maximum number of books"
@@ -84,6 +107,5 @@ class Book
       @author = author
       @status = "available"
       @borrower = nil
-
   end
 end
